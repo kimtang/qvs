@@ -1,0 +1,116 @@
+{
+	"name": "interactive-scala",
+	"displayName": "Interactive Scala",
+	"description": "Run Scala code snippets by a click on a button!",
+	"publisher": "alssys",
+	"version": "1.4.0",
+	"repository": "https://github.com/matt035343/interactive-scala",
+	"icon": "img/icon.png",
+	"license": "MIT",
+	"engines": {
+		"vscode": "^1.37.0"
+	},
+	"categories": [
+		"Other"
+	],
+	"activationEvents": [
+		"onLanguage:scala"
+	],
+	"main": "./out/extension.js",
+	"contributes": {
+		"commands": [
+			{
+				"command": "interactiveScala.executeInInteractiveScala",
+				"title": "Exectute selected code in Interactive Scala"
+			},
+			{
+				"command": "interactiveScala.executeFileInInteractiveScala",
+				"title": "Exectute selected file in Interactive Scala"
+			},
+			{
+				"command": "interactiveScala.resetInteractiveScala",
+				"title": "Reset Interactive Scala"
+			}
+		],
+		"keybindings": [
+			{
+				"command": "interactiveScala.executeInInteractiveScala",
+				"key": "alt+enter",
+				"when": "editorTextFocus && resourceLangId == scala"
+			},
+			{
+				"command": "interactiveScala.executeFileInInteractiveScala",
+				"key": "alt+ctrl+enter",
+				"when": "editorTextFocus && resourceLangId == scala"
+			},
+			{
+				"command": "interactiveScala.resetInteractiveScala",
+				"key": "alt+ctrl+r",
+				"when": "editorTextFocus && resourceLangId == scala"
+			}
+		],
+		"configuration": [
+			{
+				"title": "Interactive Scala",
+				"properties": {
+					"interactiveScala.interpreter": {
+						"type": "string",
+						"default": "scala",
+						"title": "Path for the Scala interpreter to use.",
+						"markdownDescription": "Here you can provide a path (and custom arguments) to a Scala interpreter REPL. If you want to run the interpreter with flags or parameters, you can also specify it here. E.g. write `scala` to use a system-wide installation of Scala or write `sbt console` to use the SBT interpreter. You can also preload a file, example: `scala -i Test.scala`"
+					},
+					"interactiveScala.requiredFiles": {
+						"type": "array",
+						"default": [],
+						"uniqueItems": true,
+						"description": "Provide a list of jar-files to be required upon start of the REPL.",
+						"items": {
+							"type": "string",
+							"title": "Path to jar-file"
+						}
+					}
+				}
+			}
+		],
+		"menus": {
+			"editor/context": [
+				{
+					"when": "editorHasSelection && resourceLangId == scala",
+					"command": "interactiveScala.executeInInteractiveScala",
+					"group": "z_commands"
+				},
+				{
+					"when": "resourceLangId == scala",
+					"command": "interactiveScala.executeFileInInteractiveScala",
+					"group": "z_commands"
+				},
+				{
+					"when": "resourceLangId == scala",
+					"command": "interactiveScala.resetInteractiveScala",
+					"group": "z_commands"
+				}
+			]
+		}
+	},
+	"scripts": {
+		"vscode:prepublish": "npm run compile",
+		"compile": "tsc -p ./",
+		"watch": "tsc -watch -p ./",
+		"pretest": "npm run compile",
+		"test": "node ./out/test/runTest.js"
+	},
+	"devDependencies": {
+		"@types/glob": "^7.1.1",
+		"@types/mocha": "^5.2.6",
+		"@types/node": "^10.12.21",
+		"@types/vscode": "^1.37.0",
+		"glob": "^7.1.4",
+		"mocha": "^6.1.4",
+		"typescript": "^3.3.1",
+		"tslint": "^5.12.1",
+		"vscode-test": "^1.0.2"
+	},
+	"extensionDependencies": [
+		"scala-lang.scala"
+	]
+}
