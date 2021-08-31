@@ -8,10 +8,8 @@ let configuration: vscode.WorkspaceConfiguration;
 const defaultInterpreter: string = "scala";
 
 function initialiseInteractiveScala() {
-	// let interpreter: string|undefined = configuration.get("interpreter");
-	let interpreter="scala"; 
-	//let requiredFiles: Array<string>|undefined = configuration.get("requiredFiles");
-	let requiredFiles:Array<string>|undefined =[];
+	let interpreter: string|undefined = configuration.get("interpreter");
+	let requiredFiles: Array<string>|undefined = configuration.get("requiredFiles");
 	if(!interpreter) {
 		interpreter = defaultInterpreter;
 	}
@@ -86,9 +84,7 @@ function changeServer(activeTextEditor: vscode.TextEditor) {
 	var allFiles = [activeTextEditor.document.uri.fsPath];
 	
 	let text = activeTextEditor.document.getText();
-	//var myRe = new RegExp("/\\s(.+):(.+):(\\d{1,4}):(.*):(.*)",'g');
 	var myRe = new RegExp('(/\\s.+:.+:\\d*:.*:.*)','g');
-	// var myArray = myRe.exec(text);
 	let items: vscode.QuickPickItem[] = [];
 	var myArray = text.match(myRe);
 	if(myArray){
@@ -197,7 +193,7 @@ export function activate(context: vscode.ExtensionContext) {
 		}
 	});
 
-	// configuration = vscode.workspace.getConfiguration("qvs");
+	configuration = vscode.workspace.getConfiguration("qvs");
 	
 	context.subscriptions.push(executeInInteractiveScalaCommand);
 	context.subscriptions.push(executeFileInInteractiveScalaCommand);
