@@ -5,7 +5,6 @@
 	"publisher": "kimktang",
 	"version": "1.0.0",
 	"repository": "https://github.com/kimtang/qvs",
-	//"icon": "img/icon.png",
 	"license": "MIT",
 	"engines": {
 		"vscode": "^1.37.0"
