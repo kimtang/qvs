@@ -20,19 +20,19 @@
 		"commands": [
 			{
 				"command": "qvs.executeInInteractiveScala",
-				"title": "Exectute selected code in Interactive Scala"
+				"title": "Exectute selected code in Interactive kdb studio"
 			},
 			{
 				"command": "qvs.executeFileInInteractiveScala",
-				"title": "Exectute selected file in Interactive Scala"
+				"title": "Exectute selected file in Interactive kdb studio"
 			},
 			{
 				"command": "qvs.resetInteractiveScala",
-				"title": "Reset Interactive Scala"
+				"title": "Reset Interactive kdb studio"
 			},
 			{
 				"command": "qvs.changeServer",
-				"title": "Change kdb server"
+				"title": "Change kdb studio server"
 			}
 		],
 		"keybindings": [
