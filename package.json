@@ -3,7 +3,7 @@
 	"displayName": "Interactive kdb-studio",
 	"description": "Run q code snippets on kdb-studio!",
 	"publisher": "kimktang",
-	"version": "1.0.0",
+	"version": "1.0.2",
 	"repository": "https://github.com/kimtang/qvs",
 	"license": "MIT",
 	"engines": {

@@ -97,7 +97,9 @@ function changeServer(activeTextEditor: vscode.TextEditor) {
 	}
 
 	if(vscode.workspace.workspaceFolders){
-		var allFolders = vscode.workspace.workspaceFolders.map(folder => path.join(folder.uri.fsPath,".qstudio") ).filter(folder => fs.lstatSync(folder).isDirectory() );
+		var allFolders = vscode.workspace.workspaceFolders.map(folder => path.join(folder.uri.fsPath,".qstudio") );
+		var allFolders = allFolders.filter(folder => fs.existsSync(folder) );
+		var allFolders = allFolders.filter(folder => fs.lstatSync(folder).isDirectory() );
 		allFolders.forEach(folder => fs.readdirSync(folder, {withFileTypes: true}).filter(element => element.isFile()).forEach(element => allFiles.push(path.join(folder,element.name)) ) );
 	}
 
@@ -202,7 +204,7 @@ export function activate(context: vscode.ExtensionContext) {
 	context.subscriptions.push(configurationChanged);
 	context.subscriptions.push(disposedTerminal);
 
-	initialiseInteractiveScala();
+	// initialiseInteractiveScala();
 }
 
 export function deactivate() {
